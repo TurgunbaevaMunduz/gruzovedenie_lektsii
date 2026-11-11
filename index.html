@@ -1,0 +1,1147 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Лекции по грузоведению</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Caveat:wght@400..700&family=Neucha&display=swap">
+<style>
+/* Макет: листы тетради в клетку на «столе»; красное поле слева; маркеры, стикеры и схемы как от руки */
+:root{
+  --desk:#e2e7ef; --paper:#fbfcff; --grid:rgba(66,118,196,.16); --rule:rgba(66,118,196,.34);
+  --margin:#e06a6a; --ink:#1f3b8c; --ink-2:#51639e; --pen:#6a2fd1; --red:#c62f2f; --green:#16774a;
+  --hl-pink:rgba(255,120,185,.40); --hl-yellow:rgba(255,224,0,.46); --hl-mint:rgba(60,212,138,.36);
+  --hl-sky:rgba(80,168,255,.30); --hl-lilac:rgba(168,118,255,.30);
+  --sticky:#fff1a1; --sticky-ink:#3d3300; --tape:rgba(255,255,255,.62);
+  --shadow:rgba(28,42,78,.18); --bar:rgba(251,252,255,.94);
+  --cover:#e9c53a; --navred:#e0413b; --navgreen:#219653;
+  --f-hand:"Caveat","Segoe Print","Bradley Hand",cursive;
+  --f-body:"Neucha","Caveat","Trebuchet MS",sans-serif;
+  --f-title:"Bad Script","Caveat",cursive;
+  --cell:22px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --desk:#101319; --paper:#1a1f29; --grid:rgba(120,150,230,.10); --rule:rgba(120,150,230,.26);
+  --margin:#a94b4b; --ink:#d3ddff; --ink-2:#9dadda; --pen:#c6abff; --red:#ff8e8e; --green:#7fdfb3;
+  --hl-pink:rgba(255,80,160,.30); --hl-yellow:rgba(255,208,0,.24); --hl-mint:rgba(30,200,120,.25);
+  --hl-sky:rgba(50,150,255,.25); --hl-lilac:rgba(150,100,255,.30);
+  --sticky:#463f1d; --sticky-ink:#fff2c2; --tape:rgba(255,255,255,.12);
+  --shadow:rgba(0,0,0,.5); --bar:rgba(26,31,41,.94); --cover:#8f7a24; --navred:#ff6b63; --navgreen:#4fd18a;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --desk:#101319; --paper:#1a1f29; --grid:rgba(120,150,230,.10); --rule:rgba(120,150,230,.26);
+  --margin:#a94b4b; --ink:#d3ddff; --ink-2:#9dadda; --pen:#c6abff; --red:#ff8e8e; --green:#7fdfb3;
+  --hl-pink:rgba(255,80,160,.30); --hl-yellow:rgba(255,208,0,.24); --hl-mint:rgba(30,200,120,.25);
+  --hl-sky:rgba(50,150,255,.25); --hl-lilac:rgba(150,100,255,.30);
+  --sticky:#463f1d; --sticky-ink:#fff2c2; --tape:rgba(255,255,255,.12);
+  --shadow:rgba(0,0,0,.5); --bar:rgba(26,31,41,.94); --cover:#8f7a24; --navred:#ff6b63; --navgreen:#4fd18a;
+  color-scheme:dark;
+}
+[hidden]{display:none !important}
+html{scroll-behavior:smooth}
+body{background:var(--desk);color:var(--ink);font-family:var(--f-body);font-size:19px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bar)}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration-color:var(--red);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,.key:focus-visible{outline:2px solid var(--pen);outline-offset:2px;border-radius:4px}
+
+/* верхняя панель */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bar);border-bottom:1.5px dashed var(--rule);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.bar-in{max-width:940px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.brand{font-family:var(--f-title);font-size:21px;color:var(--pen);margin-right:auto;white-space:nowrap}
+.tabs{display:flex;gap:4px}
+.tab{font-family:var(--f-hand);font-size:22px;font-weight:700;color:var(--ink-2);background:none;border:0;border-bottom:3px solid transparent;padding:0 8px;cursor:pointer}
+.tab[aria-current="page"]{color:var(--ink);border-bottom-color:var(--red)}
+.qbtn{font-family:var(--f-hand);font-size:20px;font-weight:700;color:var(--pen);background:none;border:2px solid var(--pen);border-radius:999px;padding:0 14px;cursor:pointer;line-height:1.5}
+.qbtn[aria-pressed="true"]{background:var(--pen);color:var(--paper)}
+
+/* стол и листы */
+.desk{padding-block:22px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.view{display:grid;gap:28px;max-width:900px;margin:0 auto;counter-reset:pg}
+.sheet{position:relative;counter-increment:pg;display:grid;gap:14px;align-content:start;min-width:0;
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:var(--cell) var(--cell);
+  border-radius:4px 8px 8px 4px;box-shadow:0 1px 1px var(--shadow),0 16px 30px -16px var(--shadow);
+  padding:34px 34px 30px 98px}
+.sheet::before{content:"";position:absolute;top:0;bottom:0;left:74px;width:2px;background:var(--margin);opacity:.75}
+.sheet::after{content:"";position:absolute;top:24px;bottom:24px;left:22px;width:20px;
+  background-image:radial-gradient(circle at 10px 12px,var(--desk) 0 6.5px,transparent 7.5px);background-size:20px 46px;background-repeat:repeat-y}
+.sheet > *{min-width:0}
+.pg{justify-self:end;font-family:var(--f-hand);font-size:20px;color:var(--ink-2)}
+.pg::before{content:"— " counter(pg) " —"}
+
+/* типографика */
+h1,h2,h3,h4{margin:0;text-wrap:balance;scroll-margin-top:84px}
+p,ul,ol,dl,figure{margin:0}
+.kicker{font-family:var(--f-hand);font-size:21px;color:var(--ink-2);letter-spacing:.02em}
+.title{font-family:var(--f-title);font-weight:400;font-size:clamp(32px,5.6vw,48px);line-height:1.18;color:var(--pen)}
+.meta{color:var(--ink-2)}
+h2{font-family:var(--f-hand);font-weight:700;font-size:clamp(31px,5vw,40px);line-height:1.1;color:var(--pen);margin-top:6px}
+h2 .n{color:var(--red);margin-right:.25em}
+.mk{background:linear-gradient(180deg,transparent 56%,var(--hl-lilac) 56%,var(--hl-lilac) 92%,transparent 92%);padding:0 .12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+h3{font-family:var(--f-hand);font-weight:700;font-size:clamp(26px,4vw,30px);line-height:1.15;color:var(--ink);text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:2px;text-underline-offset:6px;margin-top:4px}
+h4{font-family:var(--f-hand);font-weight:700;font-size:25px;color:var(--pen)}
+.lead{font-size:1.05em}
+.hand{font-family:var(--f-hand);font-size:1.2em;font-weight:700;line-height:1.1}
+.red{color:var(--red)} .grn{color:var(--green)} .pen{color:var(--pen)} .soft{color:var(--ink-2)}
+cite{font-style:normal;color:var(--ink-2);white-space:nowrap}
+sup,sub{line-height:0}
+.v{font-style:italic;font-family:"Cambria","Times New Roman",serif}
+.nw{white-space:nowrap}
+
+/* маркеры */
+.hl{padding:0 .16em;border-radius:.35em .55em .4em .5em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.hl.p{background:linear-gradient(transparent 14%,var(--hl-pink) 14%,var(--hl-pink) 90%,transparent 90%)}
+.hl.y{background:linear-gradient(transparent 14%,var(--hl-yellow) 14%,var(--hl-yellow) 90%,transparent 90%)}
+.hl.g{background:linear-gradient(transparent 14%,var(--hl-mint) 14%,var(--hl-mint) 90%,transparent 90%)}
+.hl.b{background:linear-gradient(transparent 14%,var(--hl-sky) 14%,var(--hl-sky) 90%,transparent 90%)}
+.hl.l{background:linear-gradient(transparent 14%,var(--hl-lilac) 14%,var(--hl-lilac) 90%,transparent 90%)}
+.term{font-family:var(--f-hand);font-weight:700;font-size:1.22em;line-height:1.1}
+
+/* списки */
+ul{list-style:none;padding-left:1.3em;display:grid;gap:5px}
+ul > li{position:relative}
+ul > li::before{content:"";position:absolute;left:-1.05em;top:.66em;width:7px;height:7px;border-radius:50%;background:var(--red)}
+ul.arrows > li::before{content:"→";width:auto;height:auto;background:none;top:0;left:-1.25em;color:var(--red);font-family:var(--f-hand);font-weight:700;font-size:1.15em}
+ol{padding-left:1.5em;display:grid;gap:5px}
+ol > li::marker{color:var(--red);font-family:var(--f-hand);font-weight:700;font-size:1.15em}
+
+/* определения */
+.defs{display:grid;gap:10px}
+.defs > div{display:block}
+.defs dt{display:inline}
+.defs dd{display:inline;margin:0}
+
+/* стикер, «запомни», авиация */
+.sticky{position:relative;justify-self:start;max-width:600px;background:var(--sticky);color:var(--sticky-ink);font-family:var(--f-hand);font-size:23px;line-height:1.25;padding:20px 20px 16px;border-radius:2px 2px 16px 2px;box-shadow:0 10px 18px -12px var(--shadow);transform:rotate(-.7deg)}
+.sticky::before{content:"";position:absolute;top:-11px;left:50%;width:96px;height:22px;transform:translateX(-50%) rotate(2deg);background:var(--tape);box-shadow:0 1px 2px var(--shadow)}
+.sticky b{font-weight:700}
+.remember{border:2px solid var(--red);border-radius:18px 6px 20px 8px;padding:12px 16px;display:grid;gap:6px}
+.remember .lbl{font-family:var(--f-hand);font-weight:700;font-size:25px;color:var(--red);line-height:1.1}
+.mnemo{font-family:var(--f-hand);font-size:26px;line-height:1.2}
+.mnemo b{color:var(--red);font-weight:700}
+.avia{display:flex;gap:10px;align-items:flex-start;color:var(--green)}
+.avia > div{min-width:0}
+.ico{flex:none;width:24px;height:24px;fill:currentColor;margin-top:4px}
+.note-avia{display:flex;gap:12px;align-items:flex-start;border:2px dashed var(--green);border-radius:14px 8px 16px 10px;padding:12px 16px}
+.note-avia .ico{width:30px;height:30px;color:var(--green)}
+.formula{justify-self:center;font-size:1.25em;padding:6px 18px;border:2px solid var(--pen);border-radius:14px 9px 16px 10px;text-align:center}
+.small{font-size:.9em}
+
+/* таблицы */
+.tcap{font-family:var(--f-hand);font-size:23px;font-weight:600;color:var(--ink-2);line-height:1.2}
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;line-height:1.35;font-size:.95em}
+table.wide{min-width:620px}
+th,td{border:1.5px solid var(--rule);padding:6px 9px;text-align:left;vertical-align:top}
+th{font-family:var(--f-hand);font-weight:700;font-size:1.18em;color:var(--pen);line-height:1.15}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+td.sys{font-family:var(--f-hand);font-weight:700;font-size:1.15em;color:var(--red);vertical-align:middle}
+
+/* карточки единиц */
+.units{display:grid;gap:18px}
+.ucard{border:2px solid var(--rule);border-radius:16px 8px 18px 10px;padding:14px 16px 16px;display:grid;gap:9px}
+.uhead{display:flex;align-items:center;gap:14px}
+.stamp{flex:none;display:grid;place-items:center;min-width:62px;height:62px;padding:0 8px;border:2.5px solid var(--red);border-radius:50%;font-family:var(--f-hand);font-weight:700;font-size:30px;color:var(--red);transform:rotate(-7deg)}
+.uname{font-family:var(--f-hand);font-weight:700;font-size:31px;line-height:1}
+.uq{color:var(--ink-2)}
+.row{display:grid;grid-template-columns:112px minmax(0,1fr);gap:2px 12px;align-items:start}
+.row > .lb{font-family:var(--f-hand);font-weight:700;font-size:22px;color:var(--pen);line-height:1.45;display:flex;gap:6px;align-items:center}
+.row.avia > .lb{color:var(--green)}
+.row.avia .ico{margin-top:0;width:20px;height:20px}
+.row > div{display:grid;gap:8px;min-width:0}
+
+/* шкала времени */
+.tl{list-style:none;padding:0;margin:0;display:grid;gap:10px;position:relative}
+.tl::before{content:"";position:absolute;left:112px;top:8px;bottom:8px;border-left:2px dashed var(--pen)}
+.tl > li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:34px;position:relative}
+.tl > li::before{content:"";position:absolute;left:106px;top:.5em;width:14px;height:14px;border-radius:50%;background:var(--paper);border:2.5px solid var(--red)}
+.tl > li.now::before{background:var(--red)}
+.tl .yr{font-family:var(--f-hand);font-weight:700;font-size:24px;color:var(--red);text-align:right;line-height:1.15}
+
+/* схемы-цепочки */
+.chains{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;width:100%}
+.chain{border:2px dashed var(--rule);border-radius:14px 8px 16px 10px;padding:10px 14px;display:grid;gap:6px;align-content:start}
+.chain p b{font-family:var(--f-hand);font-size:1.3em;color:var(--red)}
+.chainline{font-size:1.05em}
+.chainline .u{font-family:var(--f-hand);font-weight:700;font-size:1.3em;color:var(--red)}
+.chainline .op{font-family:var(--f-hand);font-weight:700;color:var(--pen);font-size:1.1em;white-space:nowrap}
+
+/* рисунки */
+figure{display:grid;gap:8px;justify-items:center}
+figure > *{min-width:0;max-width:100%}
+figure > svg{width:100%;height:auto;max-width:560px;overflow:visible}
+.figscroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;display:grid;justify-items:center}
+.figscroll > svg{width:100%;max-width:560px;min-width:420px;height:auto}
+figcaption{font-family:var(--f-hand);font-size:22px;color:var(--ink-2);text-align:center;text-wrap:balance;line-height:1.2}
+svg .ln{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+svg .thin{stroke-width:1.4}
+svg .thick{stroke-width:3.4}
+svg .dash{stroke-dasharray:6 5}
+svg .ln-red{fill:none;stroke:var(--red);stroke-width:1.8;stroke-linecap:round}
+svg .ln-dash{fill:none;stroke:var(--ink-2);stroke-width:1.5;stroke-dasharray:5 5;stroke-linecap:round}
+svg .rough{filter:url(#rough)}
+svg .fill-p{fill:var(--hl-pink)} svg .fill-y{fill:var(--hl-yellow)} svg .fill-g{fill:var(--hl-mint)}
+svg .fill-b{fill:var(--hl-sky)} svg .fill-l{fill:var(--hl-lilac)}
+svg .ln.fill-b,svg .ln.fill-l,svg .ln.fill-p{stroke:var(--ink)}
+svg .tx{fill:var(--ink);font-family:var(--f-hand);font-size:17px}
+svg .tx-red{fill:var(--red)} svg .tx-pen{fill:var(--pen)} svg .tx-2{fill:var(--ink-2)} svg .tx-grn{fill:var(--green)}
+svg .b{font-weight:700}
+svg .dot{fill:var(--red)}
+svg .nav-red{fill:var(--navred)} svg .nav-green{fill:var(--navgreen)}
+.mk-ink{fill:none;stroke:var(--ink-2);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.mk-red{fill:none;stroke:var(--red);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* проверь себя */
+.check{display:grid;gap:8px}
+.check details{border:1.5px dashed var(--rule);border-radius:12px 6px 14px 8px;padding:8px 12px}
+.check summary{cursor:pointer;list-style:none;font-family:var(--f-hand);font-weight:700;font-size:1.2em;color:var(--pen);line-height:1.25}
+.check summary::-webkit-details-marker{display:none}
+.check summary::before{content:"?";display:inline-grid;place-items:center;width:1.25em;height:1.25em;margin-right:.45em;border:2px solid var(--red);border-radius:50%;color:var(--red);font-size:.8em;vertical-align:.1em}
+.check details[open] summary::before{content:"!"}
+.check details > p{margin-top:6px}
+.src{font-size:.86em;display:grid;gap:6px;word-break:break-word}
+
+/* поле ФИО */
+.who{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;font-family:var(--f-hand);font-size:23px;color:var(--ink-2)}
+.who input{flex:1 1 220px;min-width:0;font:inherit;color:var(--ink);background:transparent;border:0;border-bottom:2px dashed var(--rule);padding:0 4px}
+.who input::placeholder{color:var(--ink-2);opacity:.7}
+.plan-list a{text-decoration:none}
+.plan-list a:hover{text-decoration:underline}
+.next{justify-self:end;font-family:var(--f-hand);font-size:24px;font-weight:700;color:var(--pen);background:none;border:0;cursor:pointer;text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:5px}
+
+/* режим запоминания */
+html.quiz .key{cursor:pointer}
+html.quiz .key:not(.shown){color:transparent !important;background:var(--cover) !important;border-radius:5px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+html.quiz .key:not(.shown) *{color:transparent !important;background:none !important}
+
+/* практическая: решения */
+.sols{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.sol{border:1.5px dashed var(--rule);border-radius:12px 6px 14px 8px;padding:10px 12px;display:grid;gap:2px;align-content:start}
+.sol .q{font-family:var(--f-hand);font-weight:700;font-size:1.22em;color:var(--pen);line-height:1.2}
+.sol .ans{margin-top:4px}
+.given{font-size:.95em;color:var(--ink-2)}
+.qa{display:grid;gap:14px}
+.qa .q{display:block;font-family:var(--f-hand);font-weight:700;font-size:1.22em;color:var(--pen);line-height:1.2;margin-bottom:2px}
+table.res th,table.res td{text-align:center}
+table.res td:first-child,table.res th:first-child{text-align:left}
+
+@media (max-width:640px){
+  body{font-size:17.5px}
+  .sheet{padding:26px 14px 24px 44px}
+  .sheet::before{left:34px}
+  .sheet::after{left:8px;width:16px;background-image:radial-gradient(circle at 8px 10px,var(--desk) 0 5px,transparent 6px);background-size:16px 40px}
+  .row{grid-template-columns:minmax(0,1fr)}
+  .tl::before{left:84px}
+  .tl > li{grid-template-columns:70px minmax(0,1fr);gap:30px}
+  .tl > li::before{left:78px}
+  .tl .yr{font-size:21px}
+  .brand{font-size:19px}
+  .sticky{font-size:21px}
+  table{font-size:.86em}
+  th,td{padding:5px 6px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* дополнения: карточки-схемы, варианты, ввод данных */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;width:100%}
+.card{border:2px dashed var(--rule);border-radius:14px 8px 16px 10px;padding:10px 14px;display:grid;gap:6px;align-content:start;min-width:0}
+.card h4{font-size:23px;line-height:1.15}
+.card ul{gap:3px}
+.card.hot{border-style:solid;border-color:var(--red)}
+.tree{display:grid;gap:10px;width:100%;justify-items:center}
+.tree .root{font-family:var(--f-hand);font-weight:700;font-size:26px;color:var(--red);border:2.5px solid var(--red);border-radius:999px;padding:2px 22px;transform:rotate(-1deg)}
+.tree .down{font-family:var(--f-hand);font-size:26px;color:var(--ink-2);line-height:1}
+.eq{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 10px;font-family:var(--f-hand);font-size:24px;font-weight:700}
+.eq .box{border:2px solid var(--pen);border-radius:12px 8px 14px 9px;padding:2px 12px;color:var(--ink)}
+.eq .box.main{border-color:var(--red);color:var(--red)}
+.eq .op{color:var(--pen)}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px 14px}
+.kv > div{border-bottom:1.5px dashed var(--rule);padding-bottom:4px}
+.kv b{display:block;font-family:var(--f-hand);font-size:1.25em;color:var(--red);line-height:1.1}
+.varbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;border:2.5px solid var(--red);border-radius:16px 8px 18px 10px;padding:10px 14px}
+.varbar label{font-family:var(--f-hand);font-weight:700;font-size:25px;color:var(--red)}
+.varbar select{font:inherit;font-family:var(--f-hand);font-size:24px;font-weight:700;color:var(--ink);background:var(--paper);border:2px solid var(--pen);border-radius:10px;padding:0 10px;cursor:pointer}
+.varbar .soft{font-size:.9em}
+.steps{display:grid;gap:10px;counter-reset:st}
+.step{display:grid;gap:2px;padding-left:2.1em;position:relative}
+.step::before{counter-increment:st;content:counter(st);position:absolute;left:0;top:0;width:1.5em;height:1.5em;border:2px solid var(--red);border-radius:50%;display:grid;place-items:center;font-family:var(--f-hand);font-weight:700;color:var(--red);font-size:.95em;line-height:1}
+.step .t{font-family:var(--f-hand);font-weight:700;font-size:1.15em;color:var(--pen);line-height:1.2}
+.calc{font-size:1.05em}
+.given{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:4px 16px;border-left:3px solid var(--pen);padding:4px 0 4px 14px}
+.ok{color:var(--green);font-weight:700}
+.bad{color:var(--red);font-weight:700}
+.inp{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px 16px}
+.inp label{display:grid;gap:2px;font-family:var(--f-hand);font-size:21px;color:var(--ink-2)}
+.inp input{font:inherit;font-family:var(--f-body);font-size:20px;color:var(--ink);background:transparent;border:0;border-bottom:2px dashed var(--rule);padding:0 4px;width:100%;min-width:0}
+.btnrow{display:flex;flex-wrap:wrap;gap:10px}
+.btn{font-family:var(--f-hand);font-size:21px;font-weight:700;color:var(--pen);background:none;border:2px solid var(--pen);border-radius:999px;padding:0 14px;cursor:pointer;line-height:1.5}
+.note-ex{border:2px dashed var(--red);border-radius:12px;padding:8px 12px;font-size:.92em}
+.scale{display:grid;gap:8px;border-left:6px solid var(--red);padding-left:14px;position:relative}
+.scale p{position:relative}
+.scale p::before{content:"";position:absolute;left:-23px;top:.6em;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2.5px solid var(--red)}
+.tabs{flex-wrap:wrap}
+@media (max-width:640px){ .tab{font-size:19px;padding:0 5px} .bar-in{gap:4px 10px} }
+.stack{display:grid;gap:14px;min-width:0}
+svg .halo{paint-order:stroke;stroke:var(--paper);stroke-width:5px;stroke-linejoin:round}
+
+</style>
+
+<svg width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-ink" d="M1 1.5 L9 5 L1 8.5"/></marker>
+    <marker id="ah-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-red" d="M1 1.5 L9 5 L1 8.5"/></marker>
+    <symbol id="i-plane" viewBox="0 0 24 24"><path d="M12 1.6c.9 0 1.4 1 1.4 2.2v5.4l8 4.5v2.1l-8-2.3v4.6l2.3 1.7v1.6L12 20.6l-3.7.8v-1.6l2.3-1.7v-4.6l-8 2.3v-2.1l8-4.5V3.8c0-1.2.5-2.2 1.4-2.2z"/></symbol>
+  </defs>
+</svg>
+
+<header class="bar">
+  <div class="bar-in">
+    <span class="brand">Тетрадь по грузоведению</span>
+    <nav class="tabs" aria-label="Лекции">
+      <button class="tab" type="button" data-view="lec1" aria-current="page">Лекция 1</button>
+      <button class="tab" type="button" data-view="lec2">Лекция 2</button>
+      <button class="tab" type="button" data-view="lec3">Лекция 3</button>
+      <button class="tab" type="button" data-view="lec4">Лекция 4</button>
+    </nav>
+    <button class="qbtn" id="quiz" type="button" aria-pressed="false">Режим запоминания</button>
+  </div>
+</header>
+
+<main class="desk">
+
+<!-- ===================== ЛЕКЦИЯ 1 ===================== -->
+<section class="view" id="lec1" aria-label="Лекция 1">
+
+<article class="sheet">
+  <p class="kicker">КАИ им. И. Абдраимова · дисциплина «Грузоведение»</p>
+  <h1 class="title">Лекция 1. Введение. Понятие груза. Транспортная характеристика груза</h1>
+  <label class="who">Конспект вела: <input class="studname" type="text" placeholder="ФИО, группа" autocomplete="off" aria-label="ФИО и группа"></label>
+
+  <h3>План лекции</h3>
+  <ol class="plan-list">
+    <li><a href="#l1s1">О дисциплине «Грузоведение»</a></li>
+    <li><a href="#l1s2">Что называется грузом</a></li>
+    <li><a href="#l1s3">Транспортная характеристика груза</a></li>
+    <li><a href="#l1s4">Свойства груза</a></li>
+  </ol>
+  <aside class="sticky"><b>Как учить.</b> Нажми «Режим запоминания» вверху: слова под маркером спрячутся. Вспомни ответ и нажми на жёлтое пятно — проверишь себя.</aside>
+
+  <h2 id="l1s1"><span class="n">1.</span><span class="mk">О дисциплине «Грузоведение»</span></h2>
+  <p class="lead"><span class="hand pen">Актуальность.</span> Грузов огромное количество, и с каждым нужно обращаться по-своему. Чтобы создавать технологии обработки грузов на складах, терминалах и на стыках видов транспорта, нужно знать:</p>
+  <ul>
+    <li><span class="hl y key">физико-химические и объёмно-массовые свойства</span> грузов;</li>
+    <li>виды <span class="hl y key">тары и упаковочных материалов</span> (в т. ч. транспортных пакетов и контейнеров), способы упаковки и пакетирования;</li>
+    <li>виды, место и способы нанесения <span class="hl y key">маркировки</span>;</li>
+    <li>для технологий перевозки — ещё и способы <span class="hl y key">размещения и крепления</span> грузов в кузове подвижного состава или контейнере.</li>
+  </ul>
+  <p><span class="hand pen">Практическая значимость.</span> Сырьё, полуфабрикаты и готовая продукция с момента принятия к перевозке становятся <span class="hl p key">грузами</span>. С ними работают логисты, кладовщики, инженеры по организации перевозок — всем им нужно грузоведение, чтобы работать качественно.</p>
+  <div class="remember">
+    <span class="lbl">Цель и задачи дисциплины</span>
+    <p><b>Цель</b> — сформировать профессиональные теоретические и практические знания по грузоведению для организации транспортного процесса при перевозке различных грузов.</p>
+    <p><b>Задачи</b> — изучить транспортные характеристики и правила перевозки грузов, их взаимодействие с окружающей средой, условия складирования и сохранности при хранении, перегрузке и перевозке, требования к таре, упаковочным материалам, транспортным средствам и погрузочно-разгрузочным механизмам.</p>
+  </div>
+  <p class="tcap">Таблица 1 – Структура дисциплины (бакалавриат «Технология транспортных процессов»)</p>
+  <div class="kv">
+    <div><b>2 курс</b>4 семестр</div>
+    <div><b>4 кредита</b>всего 120 часов</div>
+    <div><b>64 ч</b>аудиторных: лекции 32 + практические 32</div>
+    <div><b>56 ч</b>самостоятельная работа</div>
+    <div><b>экзамен</b>итоговый контроль</div>
+  </div>
+
+  <figure>
+    <div class="figscroll">
+    <svg viewBox="0 0 680 440" role="img" aria-label="Место грузоведения: базовые дисциплины слева, обеспечиваемые справа" style="min-width:520px">
+      <text class="tx tx-pen b" x="115" y="26" text-anchor="middle" font-size="18">Базовые дисциплины</text>
+      <text class="tx tx-pen b" x="565" y="26" text-anchor="middle" font-size="18">Обеспечиваемые дисциплины</text>
+      <g class="rough">
+        <path class="ln thin" d="M222 64 L250 226 M222 112 L250 228 M222 160 L250 230 M222 208 L250 232 M222 256 L250 234 M222 304 L250 236 M222 352 L250 238 M222 400 L250 240"/>
+        <path class="ln thin" d="M430 230 L458 66 M430 231 L458 146 M430 232 L458 226 M430 233 L458 306 M430 234 L458 386"/>
+        <rect class="ln" x="8" y="44" width="214" height="40" rx="10"/>
+        <rect class="ln" x="8" y="92" width="214" height="40" rx="10"/>
+        <rect class="ln" x="8" y="140" width="214" height="40" rx="10"/>
+        <rect class="ln" x="8" y="188" width="214" height="40" rx="10"/>
+        <rect class="ln" x="8" y="236" width="214" height="40" rx="10"/>
+        <rect class="ln" x="8" y="284" width="214" height="40" rx="10"/>
+        <rect class="ln" x="8" y="332" width="214" height="40" rx="10"/>
+        <rect class="ln" x="8" y="380" width="214" height="40" rx="10"/>
+        <ellipse class="ln fill-p" cx="340" cy="232" rx="92" ry="44"/>
+        <rect class="ln" x="458" y="44" width="214" height="44" rx="10"/>
+        <rect class="ln" x="458" y="124" width="214" height="44" rx="10"/>
+        <rect class="ln" x="458" y="204" width="214" height="44" rx="10"/>
+        <rect class="ln" x="458" y="284" width="214" height="44" rx="10"/>
+        <rect class="ln" x="458" y="364" width="214" height="44" rx="10"/>
+      </g>
+      <text class="tx" x="115" y="69" text-anchor="middle" font-size="16">Химия</text>
+      <text class="tx" x="115" y="117" text-anchor="middle" font-size="16">Физика</text>
+      <text class="tx" x="115" y="165" text-anchor="middle" font-size="16">Математика</text>
+      <text class="tx" x="115" y="205" text-anchor="middle" font-size="15">Информационные технологии</text>
+      <text class="tx" x="115" y="221" text-anchor="middle" font-size="15">на транспорте</text>
+      <text class="tx" x="115" y="253" text-anchor="middle" font-size="15">Методы рационального управления</text>
+      <text class="tx" x="115" y="269" text-anchor="middle" font-size="15">ресурсами транспорта</text>
+      <text class="tx" x="115" y="309" text-anchor="middle" font-size="16">Экология</text>
+      <text class="tx" x="115" y="349" text-anchor="middle" font-size="15">Метрология, стандартизация</text>
+      <text class="tx" x="115" y="365" text-anchor="middle" font-size="15">и сертификация</text>
+      <text class="tx" x="115" y="397" text-anchor="middle" font-size="15">Безопасность</text>
+      <text class="tx" x="115" y="413" text-anchor="middle" font-size="15">жизнедеятельности</text>
+      <text class="tx b tx-red" x="340" y="239" text-anchor="middle" font-size="24">Грузоведение</text>
+      <text class="tx" x="565" y="63" text-anchor="middle" font-size="15">Сюрвейерское обслуживание</text>
+      <text class="tx" x="565" y="80" text-anchor="middle" font-size="15">на транспорте</text>
+      <text class="tx" x="565" y="143" text-anchor="middle" font-size="15">Технология и организация</text>
+      <text class="tx" x="565" y="160" text-anchor="middle" font-size="15">перегрузочных процессов</text>
+      <text class="tx" x="565" y="223" text-anchor="middle" font-size="15">Технология и организация</text>
+      <text class="tx" x="565" y="240" text-anchor="middle" font-size="15">перевозки грузов</text>
+      <text class="tx" x="565" y="303" text-anchor="middle" font-size="15">Мультимодальные перевозки</text>
+      <text class="tx" x="565" y="320" text-anchor="middle" font-size="15">и транспортная логистика</text>
+      <text class="tx" x="565" y="383" text-anchor="middle" font-size="15">Коммерческая работа</text>
+      <text class="tx" x="565" y="400" text-anchor="middle" font-size="15">на водном транспорте</text>
+    </svg>
+    </div>
+    <figcaption>Рисунок 1 – Место грузоведения в комплексе транспортных дисциплин</figcaption>
+  </figure>
+  <p class="small soft">Кстати, метрология — одна из базовых дисциплин грузоведения: без измерений массы, объёма, влажности и температуры груз не охарактеризовать.</p>
+  <div class="pg"></div>
+</article>
+
+<article class="sheet">
+  <h2 id="l1s2"><span class="n">2.</span><span class="mk">Что называется грузом</span></h2>
+  <p class="lead">Результат труда на пути «производство → транспортировка → потребление» каждый раз меняет своё качество. Продукт становится <span class="hl p key">грузом</span> с момента передачи транспорту для перемещения — это <span class="hl y key">объект транспортировки</span>.</p>
+  <figure>
+    <div class="figscroll">
+    <svg viewBox="0 0 680 230" role="img" aria-label="Стадии: продукт, товар, груз, товар, продукт в сферах производства, обращения и потребления" style="min-width:520px">
+      <g class="rough">
+        <ellipse class="ln thin" cx="105" cy="122" rx="100" ry="96"/>
+        <ellipse class="ln thin fill-b" cx="340" cy="122" rx="140" ry="100"/>
+        <ellipse class="ln thin" cx="575" cy="122" rx="100" ry="96"/>
+        <rect class="ln" x="50" y="102" width="110" height="40" rx="8"/>
+        <rect class="ln" x="215" y="102" width="62" height="40" rx="8"/>
+        <rect class="ln fill-p" x="303" y="102" width="74" height="40" rx="8"/>
+        <rect class="ln" x="403" y="102" width="62" height="40" rx="8"/>
+        <rect class="ln" x="520" y="102" width="110" height="40" rx="8"/>
+      </g>
+      <path class="ln-red" d="M162 122 H211" marker-end="url(#ah-red)"/>
+      <path class="ln-red" d="M279 122 H299" marker-end="url(#ah-red)"/>
+      <path class="ln-red" d="M379 122 H399" marker-end="url(#ah-red)"/>
+      <path class="ln-red" d="M467 122 H516" marker-end="url(#ah-red)"/>
+      <text class="tx tx-pen b" x="105" y="58" text-anchor="middle" font-size="16">Сфера производства</text>
+      <text class="tx tx-pen b" x="340" y="50" text-anchor="middle" font-size="16">Сфера обращения</text>
+      <text class="tx tx-pen b" x="575" y="58" text-anchor="middle" font-size="16">Сфера потребления</text>
+      <text class="tx b" x="105" y="128" text-anchor="middle" font-size="18">Продукт</text>
+      <text class="tx b" x="246" y="128" text-anchor="middle" font-size="18">Товар</text>
+      <text class="tx b tx-red" x="340" y="128" text-anchor="middle" font-size="20">Груз</text>
+      <text class="tx b" x="434" y="128" text-anchor="middle" font-size="18">Товар</text>
+      <text class="tx b" x="575" y="128" text-anchor="middle" font-size="18">Продукт</text>
+      <text class="tx tx-2" x="105" y="166" text-anchor="middle" font-size="14">стоимость +</text>
+      <text class="tx tx-2" x="105" y="182" text-anchor="middle" font-size="14">потребительная стоимость</text>
+      <text class="tx tx-2" x="340" y="166" text-anchor="middle" font-size="14">объект транспортировки</text>
+      <text class="tx tx-2" x="575" y="166" text-anchor="middle" font-size="14">реализация</text>
+      <text class="tx tx-2" x="575" y="182" text-anchor="middle" font-size="14">потребительной стоимости</text>
+    </svg>
+    </div>
+    <figcaption>Рисунок 2 – Продукт в сфере обращения проходит стадии «товар – груз – товар»</figcaption>
+  </figure>
+  <ul class="arrows">
+    <li><b>Производство:</b> результат труда — <span class="term">продукт</span>, у него есть стоимость и потребительная стоимость.</li>
+    <li><b>Обращение:</b> продукт для продажи или потребления в другом месте — <span class="term">товар</span>; почти всегда он потребляется не там, где произведён, поэтому неизбежно перевозится. С момента передачи транспорту товар — <span class="term">груз</span>.</li>
+    <li><b>Потребление:</b> груз снова выступает как <span class="term">продукт</span> — реализуется его потребительная стоимость.</li>
+  </ul>
+  <div class="remember"><span class="lbl">Запомни цепочку</span><p class="mnemo">продукт → <b>товар → груз → товар</b> → продукт</p></div>
+
+  <h2 id="l1s3"><span class="n">3.</span><span class="mk">Транспортная характеристика груза</span></h2>
+  <p class="lead">В начале и в конце цикла важны полезные свойства продукта, а при перевозке на первый план выходят свойства, связанные с транспортировкой. Они и составляют транспортную характеристику груза.</p>
+  <div class="eq" role="img" aria-label="Транспортная характеристика равна свойствам груза плюс тара и упаковка">
+    <span class="box main">Транспортная характеристика груза</span><span class="op">=</span>
+    <span class="box">физико-химические свойства</span><span class="op">+</span>
+    <span class="box">объёмно-массовые характеристики</span><span class="op">+</span>
+    <span class="box">степень опасности</span><span class="op">+</span>
+    <span class="box">тара и упаковка</span>
+  </div>
+  <p><span class="hl p term">Транспортная характеристика груза</span> — специфические свойства груза (физико-химические, объёмно-массовые, степень опасности) <span class="key">в комплексе с параметрами тары и упаковки</span>. Она определяет:</p>
+  <ul>
+    <li><span class="hl y key">режимы перевозки, перегрузки и хранения</span>;</li>
+    <li>требования к техническим средствам этих операций.</li>
+  </ul>
+  <p>По ней выбирают тип подвижного состава (ПС), погрузочно-разгрузочные механизмы (ПРМ), складское оборудование, средства пакетирования и разрабатывают условия перевозки.</p>
+  <p><span class="hl p term">Транспортное состояние груза</span> — совокупность <span class="key">конкретных качественных и количественных показателей</span> его транспортной характеристики.</p>
+  <h3>Транспортабельность груза</h3>
+  <p>Сохранность и безопасность перевозки обеспечены, если груз предъявлен в <span class="hl g key">транспортабельном</span> состоянии, то есть он:</p>
+  <ul>
+    <li>находится в кондиционном состоянии и соответствует стандартам и условиям перевозки;</li>
+    <li>имеет исправные тару, упаковку, пломбы, замки, контрольные ленты и положенную маркировку (тарно-штучный груз);</li>
+    <li>надёжно защищён от неблагоприятного внешнего воздействия — влаги, окружающей среды, посторонних запахов;</li>
+    <li>в период отрицательных температур против его смерзаемости приняты меры;</li>
+    <li>не имеет признаков порчи.</li>
+  </ul>
+  <p>Выполнение всех условий — гарантия качественной и сохранной доставки груза.</p>
+  <div class="pg"></div>
+</article>
+
+<article class="sheet">
+  <h2 id="l1s4"><span class="n">4.</span><span class="mk">Свойства груза</span></h2>
+  <ol>
+    <li><b>Товарные свойства</b> — свойства продукта как товара.</li>
+    <li><b>Рыночные свойства</b> — востребованность товара в пунктах и регионах, характерный размер партий, тара и упаковка, набор сопутствующих услуг, платёжеспособность грузовладельцев.</li>
+    <li><b>Транспортные свойства</b> — главные для нас.</li>
+  </ol>
+  <p><span class="hl p term">Транспортные свойства груза</span> — совокупность характеристик груза, которые определяют <span class="hl y key">способ и условия его перевозки, обработки и хранения</span>. Сюда входят физико-химические и объёмно-массовые характеристики, особенности тары и упаковки, допустимые температурные, влажностные и вибрационные режимы.</p>
+  <figure>
+    <div class="cards">
+      <section class="card"><h4>1. Физико-химические</h4><p>гигроскопичность, смерзаемость, сыпучесть…</p></section>
+      <section class="card"><h4>2. Объёмно-массовые</h4><p>масса, объём, размеры, плотность</p></section>
+      <section class="card"><h4>3. Биохимические процессы</h4><p>дыхание, дозревание, прорастание</p></section>
+      <section class="card hot"><h4>4. Степень опасности</h4><p>взрыво- и огнеопасность, ядовитость…</p></section>
+      <section class="card"><h4>5. Технические условия</h4><p>свойства, определяющие ТУ перевозки, перегрузки и хранения</p></section>
+      <section class="card"><h4>6. Тара и упаковка</h4><p>требования к таре и упаковке груза</p></section>
+    </div>
+    <figcaption>Рисунок 3 – Шесть групп транспортных свойств груза</figcaption>
+  </figure>
+
+  <p class="tcap">Таблица 2 – Транспортные свойства, названные в лекции</p>
+  <div class="twrap"><table class="wide">
+    <thead><tr><th>Группа</th><th>Свойство</th><th>Коротко: что это</th></tr></thead>
+    <tbody>
+      <tr><td class="sys" rowspan="5">Вода и температура</td><td>Гигроскопичность</td><td>способность легко поглощать влагу из воздуха</td></tr>
+      <tr><td>Чувствительность к воде</td><td>порча или потеря свойств при попадании воды</td></tr>
+      <tr><td>Смерзаемость</td><td>слипание частиц в монолит при отрицательной температуре</td></tr>
+      <tr><td>Морозостойкость</td><td>выдерживает низкие температуры без разрушения и потери качества</td></tr>
+      <tr><td>Спекаемость</td><td>частицы слипаются при повышении температуры продукта</td></tr>
+      <tr><td class="sys" rowspan="5">Сыпучие и пылящие</td><td>Сыпучесть</td><td>частицы перемещаются под действием силы тяжести или толчков</td></tr>
+      <tr><td>Слеживаемость</td><td>частицы прочно сцепляются, груз теряет сыпучесть</td></tr>
+      <tr><td>Пылеёмкость</td><td>груз легко поглощает пыль из окружающего воздуха</td></tr>
+      <tr><td>Распыляемость</td><td>мельчайшие частицы образуют с воздухом устойчивую взвесь</td></tr>
+      <tr><td>Абразивность</td><td>груз истирает соприкасающиеся поверхности ПС и техники</td></tr>
+      <tr><td class="sys" rowspan="8">Опасные</td><td>Самовозгорание</td><td>загорается от внутренних процессов, без внешнего огня</td></tr>
+      <tr><td>Огнеопасность</td><td>легко воспламеняется от внешнего источника</td></tr>
+      <tr><td>Взрывоопасность</td><td>способность вызвать физический или химический взрыв</td></tr>
+      <tr><td>Вредность</td><td>пары и частицы поражают органы чувств, кожу, дыхательные пути</td></tr>
+      <tr><td>Ядовитость</td><td>прямая опасность для жизни и здоровья (токсичность)</td></tr>
+      <tr><td>Радиоактивность</td><td>излучение, опасное для людей</td></tr>
+      <tr><td>Окислительные свойства</td><td>легко отдаёт кислород другим веществам</td></tr>
+      <tr><td>Коррозия</td><td>разрушение металлов при взаимодействии со средой</td></tr>
+      <tr><td class="sys" rowspan="2">Механические</td><td>Хрупкость</td><td>разрушается от ударов и толчков</td></tr>
+      <tr><td>Вязкость</td><td>внутреннее трение жидкости: от неё зависят перекачка и остаток в таре</td></tr>
+      <tr><td class="sys" rowspan="3">Биохимические</td><td>Дыхание</td><td>окисление органических веществ кислородом у растительных грузов</td></tr>
+      <tr><td>Дозревание</td><td>в зерне сахар → крахмал, в плодах крахмал → сахар</td></tr>
+      <tr><td>Прорастание</td><td>у овощей и фруктов при интенсивном дыхании</td></tr>
+    </tbody>
+  </table></div>
+
+  <aside class="note-avia">
+    <svg class="ico" aria-hidden="true"><use href="#i-plane"/></svg>
+    <div><span class="hand grn">В авиации.</span> Транспортная характеристика решает, примут ли груз к перевозке и как его везти. Для этого есть правила IATA: опасные грузы — DGR, скоропортящиеся — PCR, живые животные — LAR, тарифы — TACT. От свойств груза зависит и выбор авиаконтейнера или паллеты (ULD) и температурного режима.</div>
+  </aside>
+
+  <h2><span class="mk">Выводы</span></h2>
+  <ol>
+    <li>Продукт становится грузом с момента передачи транспорту и проходит в сфере обращения стадии «товар – груз – товар».</li>
+    <li>Транспортная характеристика груза — его специфические свойства (физико-химические, объёмно-массовые, опасность) вместе с тарой и упаковкой; она задаёт режимы перевозки, перегрузки, хранения и выбор техники.</li>
+    <li>Груз принимают к перевозке только в транспортабельном состоянии — это гарантия его сохранности.</li>
+    <li>Транспортные свойства делят на шесть групп; их знание — основа безопасной и сохранной перевозки, в том числе воздушным транспортом.</li>
+  </ol>
+
+  <h3>Проверь себя</h3>
+  <div class="check">
+    <details><summary>С какого момента продукт становится грузом?</summary><p>С момента передачи транспорту для пространственного перемещения: теперь это объект транспортировки.</p></details>
+    <details><summary>Что входит в транспортную характеристику груза?</summary><p>Физико-химические свойства, объёмно-массовые характеристики, степень опасности — в комплексе с параметрами тары и упаковки.</p></details>
+    <details><summary>Что такое транспортное состояние груза?</summary><p>Совокупность конкретных качественных и количественных показателей транспортной характеристики груза.</p></details>
+    <details><summary>Когда груз транспортабелен?</summary><p>Кондиционный, соответствует стандартам и условиям перевозки, тара, упаковка, пломбы и маркировка исправны, груз защищён от внешних воздействий, приняты меры против смерзаемости, нет признаков порчи.</p></details>
+    <details><summary>Назови шесть групп транспортных свойств.</summary><p>Физико-химические; объёмно-массовые; биохимические процессы; степень опасности; свойства, определяющие ТУ перевозки, перегрузки и хранения; требования к таре и упаковке.</p></details>
+    <details><summary>Чем пылеёмкость отличается от распыляемости?</summary><p>Пылеёмкость — груз поглощает пыль из воздуха; распыляемость — мелкие частицы груза сами образуют с воздухом взвесь.</p></details>
+  </div>
+  <h3>Источники</h3>
+  <ol class="src">
+    <li>Лекция 1. Введение. Понятие груза. Транспортная характеристика груза : презентация / КАИ им. И. Абдраимова. – Бишкек, 2026. – 24 слайда.</li>
+    <li>Олещенко Е. М., Горев А. Э. Основы грузоведения : учебник. – Москва : Академия, 2008. – 283 с.</li>
+    <li>Магомедова Н. М. Грузоведение : теоретический курс : метод. пособие. – Ростов-на-Дону : РГУПС, 2017. – URL: <a href="https://rgups.ru/site/assets/files/172090/magomedova_n_m__gruzovedenie__teoretich__kurs__metod__posob__2017.pdf" target="_blank" rel="noopener">rgups.ru</a> (дата обращения: 10.11.2026).</li>
+    <li>Air Cargo Tariff and Rules (TACT) / IATA. – URL: <a href="https://www.iata.org/en/publications/newsletters/iata-knowledge-hub/air-cargo-tariffs-and-rules-what-you-need-to-know" target="_blank" rel="noopener">iata.org</a> (дата обращения: 10.11.2026).</li>
+  </ol>
+  <button class="next" type="button" data-go="lec2">Дальше: лекция 2 →</button>
+  <div class="pg"></div>
+</article>
+</section>
+
+<!-- ===================== ЛЕКЦИЯ 2 ===================== -->
+<section class="view" id="lec2" aria-label="Лекция 2" hidden>
+
+<article class="sheet">
+  <p class="kicker">КАИ им. И. Абдраимова · дисциплина «Грузоведение»</p>
+  <h1 class="title">Лекция 2. Факторы, влияющие на свойства грузов</h1>
+  <label class="who">Конспект вела: <input class="studname" type="text" placeholder="ФИО, группа" autocomplete="off" aria-label="ФИО и группа"></label>
+  <h3>План лекции</h3>
+  <ol class="plan-list">
+    <li><a href="#l2s1">Факторы внешней среды: влажность воздуха</a></li>
+    <li><a href="#l2s2">Биохимические процессы</a></li>
+    <li><a href="#l2s3">Влажность груза и её расчёт</a></li>
+    <li><a href="#l2s4">Классификация грузов и взаимодействие с внешней средой</a></li>
+    <li><a href="#l2s5">Физико-химические и физические свойства</a></li>
+  </ol>
+
+  <h2 id="l2s1"><span class="n">1.</span><span class="mk">Факторы внешней среды: влажность воздуха</span></h2>
+  <ul>
+    <li><span class="hl p term">Абсолютная влажность</span> — количество водяного пара <span class="key">в 1 м³ воздуха</span>.</li>
+    <li><span class="hl p term">Влажность насыщения</span> — <span class="key">максимальное</span> количество воды, которое может содержаться в 1 м³ воздуха при данных температуре и давлении без образования конденсата.</li>
+    <li><span class="hl p term">Влагоёмкость</span> — способность воздуха поглощать влагу при данной температуре.</li>
+    <li><span class="hl p term">Относительная влажность</span> — отношение абсолютной влажности воздуха к его насыщенности при той же температуре:</li>
+  </ul>
+  <p class="formula"><span class="v">φ</span> = <span class="v">a</span> / <span class="v">a</span><sub>нас</sub> · 100 %</p>
+  <ul>
+    <li><span class="hl p term">Точка росы</span> — температура, при которой <span class="key">влагоёмкость воздуха равна нулю</span>: воздух насыщен (<span class="v">φ</span> = 100 %), и на холодных поверхностях выпадает конденсат.</li>
+  </ul>
+  <div class="avia"><svg class="ico" aria-hidden="true"><use href="#i-plane"/></svg><div>В авиации это важно: груз, остывший на высоте, после посадки в тёплом влажном воздухе может «запотеть» — на нём и на таре конденсируется влага. Поэтому влагочувствительные грузы защищают плёнкой и влагопоглотителями.</div></div>
+
+  <h2 id="l2s2"><span class="n">2.</span><span class="mk">Биохимические процессы</span></h2>
+  <div class="twrap"><table>
+    <thead><tr><th>Процесс</th><th>Что происходит</th></tr></thead>
+    <tbody>
+      <tr><td><b>Автолиз</b></td><td>растворение тканей продукта при распаде белков, углеводов и жиров под действием собственных ферментов</td></tr>
+      <tr><td><b>Дыхание</b></td><td>окисление углеводов, жиров и других органических соединений кислородом</td></tr>
+      <tr><td><b>Дозревание</b></td><td class="key">в зерне сахар переходит в крахмал, в овощах и фруктах — крахмал в сахар</td></tr>
+      <tr><td><b>Прорастание</b></td><td>в овощах и фруктах при интенсивном дыхании</td></tr>
+      <tr><td><b>Брожение</b></td><td>разложение углеводов в результате деятельности микроорганизмов</td></tr>
+      <tr><td><b>Гниение</b></td><td>распад белковых веществ из-за жизнедеятельности гнилостных бактерий</td></tr>
+      <tr><td><b>Плесневение</b></td><td>разложение жиров и углеводов плесенью, на поверхности появляется налёт</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small soft">Дыхание и брожение затрагивают именно <b>углеводы</b> (сахара, крахмал) — не путать с углеводородами (нефтепродуктами).</p>
+  <div class="pg"></div>
+</article>
+
+<article class="sheet">
+  <h2 id="l2s3"><span class="n">3.</span><span class="mk">Влажность груза и её расчёт</span></h2>
+  <p class="lead"><span class="hl p term">Влажность массы груза</span> — процентное содержание влаги в массе груза. Масса влажного материала складывается из массы сухого вещества и влаги:</p>
+  <p class="formula"><span class="v">q</span><sub>в.м</sub> = <span class="v">q</span><sub>с</sub> + <span class="v">q</span><sub>вл</sub></p>
+  <div class="cards">
+    <section class="card"><h4>На сухую массу (абсолютная)</h4><p class="formula"><span class="v">w</span> = <span class="v">q</span><sub>вл</sub> / <span class="v">q</span><sub>с</sub> · 100 %</p><p class="small">масса влаги делится на массу <span class="hl y key">сухого</span> вещества</p></section>
+    <section class="card"><h4>На общую массу (относительная)</h4><p class="formula"><span class="v">w</span>° = <span class="v">q</span><sub>вл</sub> / (<span class="v">q</span><sub>с</sub> + <span class="v">q</span><sub>вл</sub>) · 100 %</p><p class="small">масса влаги делится на массу <span class="hl y key">влажного</span> груза</p></section>
+  </div>
+  <p>Для каждого гигроскопического материала установлено стандартное значение влагосодержания — <span class="hl g key">кондиционная влажность</span>. При изменении влажности меняется и масса груза:</p>
+  <div class="cards">
+    <section class="card"><h4>через абсолютную влажность</h4><p class="formula"><span class="v">Q</span><sub>к</sub> = <span class="v">Q</span><sub>н</sub> · (100 + <span class="v">w</span><sub>к</sub>) / (100 + <span class="v">w</span><sub>н</sub>)</p></section>
+    <section class="card"><h4>через относительную влажность</h4><p class="formula"><span class="v">Q</span><sub>к</sub> = <span class="v">Q</span><sub>н</sub> · (100 − <span class="v">w</span>°<sub>н</sub>) / (100 − <span class="v">w</span>°<sub>к</sub>)</p></section>
+  </div>
+  <p class="small"><span class="v">Q</span> — масса груза; индексы: «н» — начальная, «к» — конечная.</p>
+  <div class="note-ex"><b class="red">Пример для понимания.</b> Партия зерна <span class="v">Q</span><sub>н</sub> = 10 т при абсолютной влажности 14 % за время перевозки увлажнилась до 16 %: <span class="v">Q</span><sub>к</sub> = 10 · 116 / 114 ≈ 10,175 т — масса выросла на 175 кг только за счёт воды.</div>
+  <ul>
+    <li><span class="hl p term">Максимальное гигроскопическое влагосодержание</span> — наибольшее количество влаги (адсорбционной и капиллярной), которое единица массы сухого вещества может поглотить из насыщенной паровоздушной среды. Если влаги больше — груз <span class="key">подмочен</span>.</li>
+    <li><span class="hl p term">Равновесное влагосодержание</span> <span class="v">ω</span><sub>р</sub> — влагосодержание при термодинамическом равновесии: температура груза равна температуре воздуха, а давление пара у поверхности груза — давлению пара в воздухе.</li>
+    <li>Зависимость <span class="v">ω</span><sub>р</sub> от влажности воздуха — <span class="hl y key">изотермы сорбции и десорбции</span> (кривые равновесной влажности).</li>
+  </ul>
+  <figure>
+    <svg viewBox="0 0 420 300" role="img" aria-label="Схема изотерм сорбции пшеницы при 0, 20 и 30 градусах">
+      <path class="ln thin" d="M50 262 H405 M50 262 V28" marker-end="url(#ah)"/>
+      <text class="tx tx-2" x="398" y="284" text-anchor="end" font-size="16">W, %  (влажность зерна)</text>
+      <text class="tx tx-2" x="58" y="24" font-size="16">φ, %  (влажность воздуха)</text>
+      <g class="rough">
+        <path class="ln-red" d="M70 252 C 170 248, 170 110, 300 50"/>
+        <path class="ln" d="M90 252 C 195 248, 195 110, 330 48"/>
+        <path class="ln" style="stroke:var(--pen)" d="M110 252 C 220 248, 220 110, 360 46"/>
+      </g>
+      <text class="tx tx-red b" x="232" y="94" font-size="16">30 °C</text>
+      <text class="tx b" x="268" y="118" font-size="16">20 °C</text>
+      <text class="tx tx-pen b" x="304" y="142" font-size="16">0 °C</text>
+    </svg>
+    <figcaption>Рисунок 1 – Изотермы сорбции пшеницы (схема по слайду лекции)</figcaption>
+  </figure>
+  <p class="small">Как читать: при одной и той же влажности воздуха <span class="v">φ</span> чем теплее, тем меньше равновесная влажность зерна.</p>
+
+  <h3>Группы грузов по отношению к внешней среде</h3>
+  <ol>
+    <li><b>I группа</b> — ценные грузы и грузы, которые портятся от влаги или изменения температуры.</li>
+    <li><b>II группа</b> — не боятся колебаний температуры, но портятся от попадания влаги.</li>
+    <li><b>III группа</b> — не подвержены или слабо подвержены воздействию внешней среды.</li>
+  </ol>
+  <div class="pg"></div>
+</article>
+
+<article class="sheet">
+  <h2 id="l2s4"><span class="n">4.</span><span class="mk">Классификация грузов и взаимодействие со средой</span></h2>
+  <figure>
+    <div class="tree">
+      <span class="root">Грузы</span>
+      <span class="down" aria-hidden="true">↙ ↓ ↘</span>
+      <div class="cards">
+        <section class="card"><h4>Массовые</h4><ul><li>наливные</li><li>навалочные</li></ul></section>
+        <section class="card"><h4>Генеральные</h4><ul><li>тарно-штучные</li><li>в интермодальных транспортных единицах</li><li>необалк</li></ul></section>
+        <section class="card hot"><h4>Особорежимные</h4><ul><li>опасные</li><li>под температурным контролем</li><li>крупногабаритные и тяжеловесные</li><li>прочие</li></ul></section>
+      </div>
+    </div>
+    <figcaption>Рисунок 2 – Классификация грузов по основным физическим свойствам</figcaption>
+  </figure>
+
+  <h3>С чем взаимодействует груз</h3>
+  <figure>
+    <div class="cards">
+      <section class="card"><h4>С природной средой</h4><ul><li>атмосфера</li><li>гидросфера</li><li>литосфера</li><li>биосфера: растительный и животный мир</li></ul></section>
+      <section class="card"><h4>С техническими средствами транспорта</h4><ul><li>подвижной состав и флот: суда, вагоны, автомобили, воздушные суда</li><li>техника терминалов: погрузочно-разгрузочные, транспортно-складские, транспортирующие машины</li><li>здания (склады) и сооружения (платформы, причалы, мосты, тоннели)</li></ul></section>
+      <section class="card"><h4>С другими грузами</h4><p>совместимость при совместной перевозке и хранении</p></section>
+      <section class="card"><h4>С персоналом транспорта</h4><p>безопасность людей при работе с грузом</p></section>
+    </div>
+    <figcaption>Рисунок 3 – Структура взаимодействия груза с внешней средой</figcaption>
+  </figure>
+  <p>Виды процессов внутри груза и при его взаимодействии со средой: <span class="hl y key">физические, химические, биологические, комплексные</span> и другие. Их изучение — база грузоведения.</p>
+  <h3>Что действует на груз при перевозке</h3>
+  <ul>
+    <li><b>внешняя среда</b> — температура, влажность, газовый состав воздуха, запылённость, свет, микроорганизмы;</li>
+    <li><b>механические воздействия</b> при перевозке и погрузочно-разгрузочных работах: <span class="key">статические</span> нагрузки и <span class="key">динамические</span> — при движении и соударениях;</li>
+    <li><b>неисправности</b> подвижного состава и складов — щели в кузове, нарушение температурного режима для скоропортящихся грузов и т. д.</li>
+  </ul>
+  <div class="pg"></div>
+</article>
+
+<article class="sheet">
+  <h2 id="l2s5"><span class="n">5.</span><span class="mk">Физико-химические и физические свойства</span></h2>
+  <div class="cards">
+    <section class="card"><h4>Для сыпучих грузов</h4><p>гранулометрический состав, сыпучесть, угол естественного откоса, сопротивление сдвигу, скважистость, пористость, способность уплотняться, хрупкость, пылеёмкость, распыляемость, абразивность, слеживаемость, сводообразование</p></section>
+    <section class="card"><h4>Вода, температура, химия</h4><p>динамическая и кинематическая вязкость, гигроскопичность, влажность (абсолютная и относительная), смерзаемость, морозостойкость, спекаемость, теплостойкость, огнестойкость, самонагревание и самовозгорание, окислительные свойства, коррозия</p></section>
+  </div>
+  <ul>
+    <li><span class="hl p term">Вязкость</span> (внутреннее трение между частицами) — свойство жидкостей и газов сопротивляться течению. От неё зависят скорость перекачки наливного груза и <span class="key">остаток в таре (налипание)</span>.</li>
+    <li><span class="hl p term">Сыпучесть</span> — способность зернистого материала перемещаться под действием силы тяжести или динамического воздействия. Её оценивают <span class="hl y key">углом естественного откоса</span> и углом внутреннего трения, в общем случае — сопротивлением сдвигу. <span class="soft">(Угол откоса измеряем в лабораторной работе №3.)</span></li>
+    <li><span class="term">Насыпью</span> перевозят однородную массу сыпучих частиц: зерно, песок, концентраты, муку. <span class="term">Навалом</span> — грузы без счёта мест, которые не относятся к насыпным: чушки чугуна, камень, дрова.</li>
+    <li><span class="hl p term">Слеживаемость</span> — переход в состояние слежалости: прочное сцепление частиц, потеря скважистости и сыпучести, максимальная плотность. Больше всего подвержены бокситы, руды, суперфосфат, калийные и азотные удобрения, селитра, соли.</li>
+    <li><span class="hl p term">Смерзаемость</span> по результату идентична слеживаемости: частицы слипаются тем сильнее, чем они мельче и шероховатее и чем выше влажность и пористость груза.</li>
+    <li><span class="hl p term">Гигроскопичность</span> — способность легко поглощать влагу из воздуха. Поглощение растёт при <span class="key">повышении влажности, скорости движения воздуха, площади контакта груза с воздухом, пористости и скважистости</span>.</li>
+    <li><span class="hl p term">Морозостойкость</span> — способность выдерживать низкие температуры, не разрушаясь и сохраняя качество после оттаивания (лес, бумага, металлы; жидкости в стекле и свежие овощи — нет).</li>
+    <li><span class="hl p term">Теплостойкость</span> — способность противостоять биохимическим процессам, окислению или самовозгоранию при высоких температурах. Тепла боятся грузы растительного и животного происхождения, уголь, торф, сланцы.</li>
+    <li><span class="hl p term">Огнестойкость</span> — свойство не воспламеняться и не менять прочность, цвет, форму под действием огня; встречается редко (<span class="key">асбест</span>).</li>
+  </ul>
+  <p>Сыпучесть и разжижение навалочных и насыпных грузов определяют безопасность их перевозки и технологию перегрузки и складирования.</p>
+
+  <h2><span class="mk">Выводы</span></h2>
+  <ol>
+    <li>Главный внешний фактор — влажность воздуха: при достижении точки росы на грузе выпадает конденсат.</li>
+    <li>Грузы растительного и животного происхождения меняются из-за биохимических процессов: дыхания, дозревания, брожения, гниения, плесневения.</li>
+    <li>Влажность груза считают на сухую или на общую массу; при её изменении меняется масса партии, и это нужно учитывать при приёмке и сдаче.</li>
+    <li>Грузы делят на массовые, генеральные и особорежимные; груз взаимодействует с природной средой, техникой, другими грузами и людьми.</li>
+    <li>Для сыпучих грузов главные свойства — сыпучесть (угол естественного откоса), слеживаемость, смерзаемость, гигроскопичность.</li>
+  </ol>
+  <h3>Проверь себя</h3>
+  <div class="check">
+    <details><summary>Что такое точка росы?</summary><p>Температура, при которой влагоёмкость воздуха равна нулю: воздух насыщен влагой, и выпадает конденсат.</p></details>
+    <details><summary>Чем абсолютная влажность груза отличается от относительной?</summary><p>Абсолютная — масса влаги делится на массу сухого вещества; относительная — на массу влажного груза.</p></details>
+    <details><summary>Посчитай: 5 т груза, влажность (абсолютная) 10 % → 12 %.</summary><p><span class="v">Q</span><sub>к</sub> = 5 · 112 / 110 ≈ 5,091 т.</p></details>
+    <details><summary>Что такое кондиционная влажность?</summary><p>Стандартное значение влагосодержания, установленное для гигроскопического материала.</p></details>
+    <details><summary>На какие группы делят грузы по физическим свойствам?</summary><p>Массовые (наливные, навалочные), генеральные (тарно-штучные, в интермодальных единицах, необалк), особорежимные (опасные, под температурным контролем, крупногабаритные и тяжеловесные, прочие).</p></details>
+    <details><summary>Чем оценивают сыпучесть?</summary><p>Углом естественного откоса и углом внутреннего трения, в общем случае — сопротивлением сдвигу.</p></details>
+  </div>
+  <h3>Источники</h3>
+  <ol class="src">
+    <li>Лекция 2. Факторы, влияющие на свойства грузов : презентация / КАИ им. И. Абдраимова. – Бишкек, 2026. – 37 слайдов.</li>
+    <li>Олещенко Е. М., Горев А. Э. Основы грузоведения : учебник. – Москва : Академия, 2008. – 283 с.</li>
+    <li>Магомедова Н. М. Грузоведение : теоретический курс : метод. пособие. – Ростов-на-Дону : РГУПС, 2017. – URL: <a href="https://rgups.ru/site/assets/files/172090/magomedova_n_m__gruzovedenie__teoretich__kurs__metod__posob__2017.pdf" target="_blank" rel="noopener">rgups.ru</a> (дата обращения: 10.11.2026).</li>
+  </ol>
+  <button class="next" type="button" data-go="lec3">Дальше: лекция 3 →</button>
+  <div class="pg"></div>
+</article>
+</section>
+
+<!-- ===================== ЛЕКЦИЯ 3 ===================== -->
+<section class="view" id="lec3" aria-label="Лекция 3" hidden>
+
+<article class="sheet">
+  <p class="kicker">КАИ им. И. Абдраимова · дисциплина «Грузоведение»</p>
+  <h1 class="title">Лекция 3. Характеристика опасности груза. Определение качества грузов</h1>
+  <label class="who">Конспект вела: <input class="studname" type="text" placeholder="ФИО, группа" autocomplete="off" aria-label="ФИО и группа"></label>
+  <h3>План лекции</h3>
+  <ol class="plan-list">
+    <li><a href="#l3s1">Свойства груза (повторение)</a></li>
+    <li><a href="#l3s2">Характеристика опасности груза</a></li>
+    <li><a href="#l3s3">Качество грузов и методы его определения</a></li>
+    <li><a href="#l3s4">Правила и документы для перевозки грузов</a></li>
+  </ol>
+
+  <h2 id="l3s1"><span class="n">1.</span><span class="mk">Свойства груза (повторение)</span></h2>
+  <p>Свойства груза: <b>товарные, рыночные, транспортные</b>. Транспортные свойства — совокупность характеристик, определяющих способ и условия перевозки, обработки и хранения груза: физико-химические, объёмно-массовые, биохимические процессы, <span class="hl p key">степень опасности</span>, свойства для ТУ перевозки и требования к таре и упаковке.</p>
+
+  <h2 id="l3s2"><span class="n">2.</span><span class="mk">Характеристика опасности груза</span></h2>
+  <p class="lead">При перевозке опасность груза учитывают, чтобы снизить риск для людей, техники и других участников движения. Её характеризуют такие свойства.</p>
+  <ul>
+    <li><span class="hl p term">Взрывоопасность</span> — способность грузов вызывать физический или химический взрыв. <span class="term">Взрыв</span> — освобождение большого количества энергии в ограниченном объёме за короткое время; вещество превращается в сильно нагретый газ под высоким давлением.
+      <ul>
+        <li><span class="hl y key">Физический взрыв</span> — от сжатых или сжиженных газов: быстрое расширение газа, ударная волна.</li>
+        <li><span class="hl y key">Химический взрыв</span> — очень быстрая реакция окисления взрывчатого вещества; горение переходит в детонацию, взрывается вся масса.</li>
+      </ul>
+      Степень опасности взрывчатых веществ зависит от свойств и массы продукта, качества тары и упаковки.</li>
+  </ul>
+  <h3>Горючие жидкости: три температуры</h3>
+  <div class="scale">
+    <p><span class="hl y term">Температура вспышки</span> — <span class="key">наименьшая</span> температура, при которой над жидкостью образуются пары, способные вспыхнуть от внешнего источника; сгорают только пары.</p>
+    <p><span class="hl y term">Температура воспламенения</span> — минимальная температура, при которой возможно <span class="key">устойчивое горение</span> паров.</p>
+    <p><span class="hl y term">Температура самовоспламенения</span> — жидкость загорается <span class="key">сама, без источника огня</span>; она значительно выше температуры вспышки.</p>
+  </div>
+  <p class="small soft">По возрастанию: вспышка &lt; воспламенение &lt; самовоспламенение.</p>
+  <ul>
+    <li><span class="hl p term">Вредность</span> — способность паров и взвешенных частиц поражать органы чувств, кожу, дыхательные пути и лёгкие; для вредных веществ установлены <span class="key">предельно допустимые концентрации (ПДК)</span>.</li>
+    <li><span class="hl p term">Ядовитость</span> — прямая опасность для здоровья и жизни; сила действия определяется <span class="key">токсичностью</span>, опасность — способностью создавать опасные концентрации в воздухе при авариях.</li>
+    <li><span class="hl p term">Инфекционно-опасные грузы</span>: живность, сырые животные продукты, шерсть, кожевенное сырьё, бактериологические препараты. Им способствуют биохимические процессы: автолиз (мясо, табак, мука), дыхание, дозревание, прорастание, брожение, гниение, плесневение.</li>
+    <li><span class="hl p term">Радиоактивность</span> — излучение, опасное для людей. Три группы веществ: излучающие α-, β- и γ-лучи; источники нейтронов (или нейтронов и γ-лучей); излучающие α- и β-лучи.</li>
+    <li><span class="hl p term">Самонагревание и самовозгорание</span> — от внутренних источников тепла: биохимических (дыхание) и химических (реакция с кислородом воздуха) процессов. Подвержены: <span class="key">зерно, сено, жмых, торф, некоторые руды и концентраты</span>.</li>
+    <li><span class="hl p term">Окислительные свойства</span> — способность легко отдавать избыток кислорода другим веществам: кислоты, щёлочи, соли, минеральные удобрения, <span class="key">перекись водорода</span>.</li>
+    <li><span class="hl p term">Коррозия</span> — разрушение металлов и металлических изделий при химическом или электрохимическом взаимодействии со средой.</li>
+  </ul>
+  <div class="pg"></div>
+</article>
+
+<article class="sheet">
+  <h3>Связь с классами опасных грузов</h3>
+  <p>Свойства опасности из лекции лежат в основе международной классификации. В воздушных перевозках она закреплена Приложением 18 ICAO, Техническими инструкциями ICAO (Doc 9284) и правилами IATA DGR.</p>
+  <p class="tcap">Таблица 1 – Свойство опасности и класс опасных грузов</p>
+  <div class="twrap"><table>
+    <thead><tr><th>Класс</th><th>Опасные грузы</th><th>Свойство из лекции</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td>взрывчатые вещества и изделия</td><td>взрывоопасность (химический взрыв)</td></tr>
+      <tr><td class="n">2</td><td>газы (сжатые, сжиженные)</td><td>взрывоопасность (физический взрыв)</td></tr>
+      <tr><td class="n">3</td><td>легковоспламеняющиеся жидкости</td><td>температура вспышки</td></tr>
+      <tr><td class="n">4</td><td>легковоспламеняющиеся твёрдые вещества</td><td>самовозгорание, огнеопасность</td></tr>
+      <tr><td class="n">5</td><td>окисляющие вещества, органические пероксиды</td><td>окислительные свойства</td></tr>
+      <tr><td class="n">6</td><td>токсичные и инфекционные вещества</td><td>ядовитость, инфекционная опасность</td></tr>
+      <tr><td class="n">7</td><td>радиоактивные материалы</td><td>радиоактивность</td></tr>
+      <tr><td class="n">8</td><td>коррозионные вещества</td><td>коррозия</td></tr>
+      <tr><td class="n">9</td><td>прочие опасные вещества и изделия</td><td>например, литиевые батареи</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="l3s3"><span class="n">3.</span><span class="mk">Качество грузов и методы его определения</span></h2>
+  <p class="lead"><span class="hl p term">Качество груза</span> — совокупность свойств, определяющих <span class="hl y key">степень пригодности продукции к использованию по назначению</span>.</p>
+  <figure>
+    <div class="tree">
+      <span class="root">Методы определения качества</span>
+      <span class="down" aria-hidden="true">↙ ↓ ↘</span>
+      <div class="cards">
+        <section class="card"><h4>Органолептический</h4><p>органы чувств: зрение, слух, осязание, обоняние, вкус</p></section>
+        <section class="card"><h4>Лабораторный</h4><p>пробы, приборы, реактивы в лаборатории</p></section>
+        <section class="card"><h4>Натурный</h4><p>простые приборы прямо на месте работы</p></section>
+      </div>
+    </div>
+    <figcaption>Рисунок 1 – Три метода определения качества грузов</figcaption>
+  </figure>
+  <h3>Органолептический (сенсорная оценка)</h3>
+  <p>Качество определяют <span class="key">только органами чувств</span>: внешний вид груза и тары, цвет, форма, блеск, прозрачность, твёрдость, запах, плесень, зараженность вредителями. Чаще всего — для пищевых и скоропортящихся грузов.</p>
+  <div class="cards">
+    <section class="card"><h4 class="grn">Плюсы</h4><ul><li>широкое применение</li><li>простота</li><li>быстрота</li><li>без дополнительных расходов</li></ul></section>
+    <section class="card"><h4 class="red">Минусы</h4><ul><li>субъективность</li><li>трудно оценить свойства количественно</li></ul></section>
+  </div>
+  <h3>Лабораторный (измерительный)</h3>
+  <p>Отобранные пробы исследуют приборами, аппаратами и реактивами в лаборатории. Виды исследований:</p>
+  <ul>
+    <li><b>физический</b> — плотность, вязкость, температуры вспышки, воспламенения, застывания;</li>
+    <li><b>механический</b> — упругость, растяжимость, прочность, сопротивление сдвигу, скручиванию, разрыву;</li>
+    <li><b>оптический</b> — строение вещества (микроскопы, лазерные устройства);</li>
+    <li><b>химический</b> — химический состав и активность вещества;</li>
+    <li><b>биологический</b> — живые организмы, вызывающие порчу.</li>
+  </ul>
+  <h3>Натурный</h3>
+  <p>Данные получают в производственных условиях простыми приборами: <span class="key">рулетки, весы, угломеры, термометры, барометры, гигрометры, психрометры</span>. Определяют объёмно-массовые и температурные характеристики, влажность, угол естественного откоса, параметры среды. Метод простой и частый на практике.</p>
+  <div class="pg"></div>
+</article>
+
+<article class="sheet">
+  <h2 id="l3s4"><span class="n">4.</span><span class="mk">Правила и документы для перевозки грузов</span></h2>
+  <p class="lead"><span class="hl p term">Правила перевозок</span> расширяют и конкретизируют положения Устава и устанавливают правила:</p>
+  <ul>
+    <li>подготовки грузов к перевозке;</li>
+    <li>подготовки подвижного состава для конкретных грузов;</li>
+    <li>приёма и выдачи грузов;</li>
+    <li>хранения в местах общего пользования;</li>
+    <li>перевозки скоропортящихся грузов;</li>
+    <li>перевозки грузов со специфическими свойствами.</li>
+  </ul>
+  <p>Правила обязательны для всех физических и юридических лиц — пользователей транспорта общего пользования. В лекции они рассмотрены на примере железной дороги.</p>
+  <p class="tcap">Таблица 2 – Документы и их назначение</p>
+  <div class="twrap"><table>
+    <thead><tr><th>Документ</th><th>Для чего</th></tr></thead>
+    <tbody>
+      <tr><td>Технические условия размещения и крепления грузов в ПС и контейнерах</td><td>как разместить и закрепить груз</td></tr>
+      <tr><td>Тарифное руководство № 1 — Прейскурант № 10-01</td><td>расчёт провозных плат</td></tr>
+      <tr><td>ЕТСНГ и ГНГ (номенклатуры грузов)</td><td>название, код и тарифный класс груза</td></tr>
+      <tr><td>Правила перевозок опасных грузов</td><td>перевозка опасных грузов</td></tr>
+      <tr><td>Инструкция по перевозке негабаритных и тяжеловесных грузов</td><td>крупные и тяжёлые грузы</td></tr>
+      <tr><td>ГОСТы и технические условия</td><td>требования к грузам, таре и упаковке</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="note-avia">
+    <svg class="ico" aria-hidden="true"><use href="#i-plane"/></svg>
+    <div><span class="hand grn">В авиации аналоги такие:</span> тарифы и правила — IATA TACT; опасные грузы — Приложение 18 ICAO, Технические инструкции (Doc 9284) и IATA DGR; скоропортящиеся — IATA PCR; живые животные — IATA LAR.</div>
+  </aside>
+
+  <h2><span class="mk">Выводы</span></h2>
+  <ol>
+    <li>Опасность груза определяют взрывоопасность, огнеопасность (температуры вспышки, воспламенения, самовоспламенения), вредность, ядовитость, инфекционная опасность, радиоактивность, самовозгорание, окислительные свойства и коррозия.</li>
+    <li>Эти свойства лежат в основе девяти классов опасных грузов, принятых и в авиации.</li>
+    <li>Качество груза — степень его пригодности по назначению; его определяют органолептическим, лабораторным и натурным методами.</li>
+    <li>Порядок перевозки задают правила перевозок, технические условия, тарифы, номенклатуры грузов, ГОСТы.</li>
+  </ol>
+  <h3>Проверь себя</h3>
+  <div class="check">
+    <details><summary>Чем физический взрыв отличается от химического?</summary><p>Физический — быстрое расширение сжатого или сжиженного газа; химический — очень быстрая реакция окисления взрывчатого вещества с детонацией.</p></details>
+    <details><summary>Расставь по возрастанию: самовоспламенение, вспышка, воспламенение.</summary><p>Вспышка &lt; воспламенение &lt; самовоспламенение.</p></details>
+    <details><summary>Что подвержено самонагреванию?</summary><p>Зерно, сено, жмых, торф, некоторые руды и их концентраты.</p></details>
+    <details><summary>Что такое качество груза?</summary><p>Совокупность свойств, определяющих степень пригодности продукции к использованию по назначению.</p></details>
+    <details><summary>Плюсы и минусы органолептического метода?</summary><p>Плюсы: широкое применение, простота, быстрота, без расходов. Минусы: субъективность, трудно оценить количественно.</p></details>
+    <details><summary>Какими приборами пользуются при натурном методе?</summary><p>Рулетки, весы, угломеры, термометры, барометры, гигрометры, психрометры.</p></details>
+    <details><summary>Какой класс опасных грузов — коррозионные вещества?</summary><p>Класс 8.</p></details>
+  </div>
+  <h3>Источники</h3>
+  <ol class="src">
+    <li>Лекция 3. Характеристика опасности груза. Определение качества грузов : презентация / КАИ им. И. Абдраимова. – Бишкек, 2026. – 24 слайда.</li>
+    <li>Олещенко Е. М., Горев А. Э. Основы грузоведения : учебник. – Москва : Академия, 2008. – 283 с.</li>
+    <li>Technical Instructions for the Safe Transport of Dangerous Goods by Air (Doc 9284) / ICAO. – URL: <a href="https://www.icao.int/Dangerous-Goods/Technical-Instructions" target="_blank" rel="noopener">icao.int</a> (дата обращения: 10.11.2026).</li>
+    <li>Dangerous Goods Regulations (DGR) / IATA. – URL: <a href="https://www.iata.org/en/publications/dgr" target="_blank" rel="noopener">iata.org/en/publications/dgr</a> (дата обращения: 10.11.2026).</li>
+  </ol>
+  <button class="next" type="button" data-go="lec4">Дальше: лекция 4 →</button>
+  <div class="pg"></div>
+</article>
+</section>
+
+<!-- ===================== ЛЕКЦИЯ 4 ===================== -->
+<section class="view" id="lec4" aria-label="Лекция 4" hidden>
+
+<article class="sheet">
+  <p class="kicker">КАИ им. И. Абдраимова · дисциплина «Грузоведение»</p>
+  <h1 class="title">Лекция 4. Тара и упаковочные материалы</h1>
+  <label class="who">Конспект вела: <input class="studname" type="text" placeholder="ФИО, группа" autocomplete="off" aria-label="ФИО и группа"></label>
+  <h3>План лекции</h3>
+  <ol class="plan-list">
+    <li><a href="#l4s1">Основные понятия и функции тары</a></li>
+    <li><a href="#l4s2">Классификация тары</a></li>
+    <li><a href="#l4s3">Виды транспортной тары</a></li>
+    <li><a href="#l4s4">Поддоны и средства пакетирования</a></li>
+  </ol>
+
+  <h2 id="l4s1"><span class="n">1.</span><span class="mk">Основные понятия и функции тары</span></h2>
+  <p><span class="hl p term">Упаковка</span> — средство или комплекс средств, обеспечивающих <span class="key">защиту товара от повреждений и потерь, а окружающей среды — от загрязнения</span>.</p>
+  <div class="eq" role="img" aria-label="Упаковка состоит из тары, упаковочных и перевязочных материалов">
+    <span class="box main">Упаковка</span><span class="op">=</span><span class="box">тара</span><span class="op">+</span><span class="box">упаковочные материалы</span><span class="op">+</span><span class="box">перевязочные материалы</span>
+  </div>
+  <ul>
+    <li><span class="hl y term">Тара</span> — <span class="key">основной</span> элемент упаковки: изделие для размещения товара.</li>
+    <li><span class="hl y term">Упаковочные материалы</span> — дополнительный элемент для защиты товаров от <span class="key">механических воздействий</span>.</li>
+    <li><span class="hl y term">Перевязочные материалы</span> — дополнительный элемент для <span class="key">повышения прочности тары</span>.</li>
+  </ul>
+  <h3>Функции тары</h3>
+  <ol>
+    <li>сохранность упакованного товара;</li>
+    <li>ускорение передачи товаров от производителя к потребителю;</li>
+    <li>облегчение погрузочно-разгрузочных и внутрискладских операций;</li>
+    <li>безопасные условия труда;</li>
+    <li>улучшение учёта и организации сбыта;</li>
+    <li>эффективное использование транспорта и складов;</li>
+    <li>рекламная функция;</li>
+    <li>защита человека и среды от вредных материалов.</li>
+  </ol>
+
+  <h2 id="l4s2"><span class="n">2.</span><span class="mk">Классификация тары</span></h2>
+  <p>Классификационных признаков в лекции 11: функции в обращении, кратность использования, принадлежность, функциональное назначение, метод изготовления, конструкция, физико-механические свойства, устойчивость к внешним воздействиям, материал, вид тары, вид укупорочных и вспомогательных средств.</p>
+  <figure>
+    <div class="cards">
+      <section class="card hot"><h4>По функциям в обращении</h4><ul><li><b>транспортная</b> (внешняя)</li><li><b>потребительская</b> (внутренняя)</li><li><b>тара-оборудование</b></li><li><b>цеховая</b></li></ul></section>
+      <section class="card"><h4>По кратности использования</h4><ul><li>разовая</li><li>возвратная</li><li>многооборотная</li></ul></section>
+      <section class="card"><h4>По принадлежности</h4><ul><li>общего пользования</li><li>индивидуального пользования</li></ul></section>
+      <section class="card"><h4>По назначению</h4><ul><li>универсальная</li><li>специализированная</li></ul></section>
+      <section class="card"><h4>По конструкции</h4><ul><li>разборная, складная, разборно-складная, неразборная</li><li>открытая, закрытая</li></ul></section>
+      <section class="card"><h4>По жёсткости</h4><ul><li>жёсткая, полужёсткая, мягкая</li><li>хрупкая (стекло)</li></ul></section>
+      <section class="card"><h4>По методу изготовления</h4><ul><li>бондарная, клееная, штампованная, литая, сварная</li></ul></section>
+      <section class="card"><h4>По материалу</h4><ul><li>деревянная, картонная, бумажная, текстильная</li><li>металлическая, стеклянная, полимерная</li><li>комбинированная</li></ul></section>
+      <section class="card"><h4>Ещё признаки</h4><ul><li>штабелируемая / нештабелируемая</li><li>герметичная / негерметичная</li><li>крупно- / мелкогабаритная</li></ul></section>
+    </div>
+    <figcaption>Рисунок 1 – Классификация тары по основным признакам</figcaption>
+  </figure>
+  <div class="pg"></div>
+</article>
+
+<article class="sheet">
+  <h3>Тара по функциям в обращении</h3>
+  <ol>
+    <li><span class="hl y term">Транспортная (внешняя)</span> — для перевозки и хранения: цистерны, бочки, бидоны для жидкостей; контейнеры, ящики, лотки, корзины, коробки; мешки тканевые, полимерные, из крафт-бумаги.</li>
+    <li><span class="hl y term">Потребительская (внутренняя)</span> — поступает к потребителю вместе с товаром и не выполняет функцию транспортной: флаконы, бутылки, банки, тубы, пакеты, коробки.</li>
+    <li><span class="hl y term">Тара-оборудование</span> — для укладки, перевозки, хранения и продажи из неё товаров: одновременно товароснабжение и торговое оборудование в зале.</li>
+    <li><span class="hl y term">Цеховая</span> — для группировки товаров внутри предприятия (специальные лотки и ящики).</li>
+  </ol>
+  <p class="small soft">На слайдах также названы групповая тара (объединяет несколько единиц) и производственная.</p>
+  <h3>Тара по кратности использования</h3>
+  <ul>
+    <li><span class="term">Разовая</span> — для однократного использования: большинство потребительской тары и транспортная, которую утилизируют.</li>
+    <li><span class="term">Возвратная</span> — бывшая в употреблении, используется повторно и <span class="key">обязательно сдаётся поставщику</span>.</li>
+    <li><span class="term">Многооборотная</span> — для многократного использования, как правило подлежит возврату: ящики, бочки, фляги, мешки.</li>
+  </ul>
+  <h3>По принадлежности и назначению</h3>
+  <ul>
+    <li><b>Общего пользования</b> — применяется разными предприятиями; <b>индивидуального</b> — инвентарная, по спецзаказу, собственность промышленных или оптовых предприятий.</li>
+    <li><b>Универсальная</b> — для разных товаров; <b>специализированная</b> — только для определённых товаров.</li>
+  </ul>
+  <h3>Тара по материалу</h3>
+  <div class="twrap"><table>
+    <thead><tr><th>Материал</th><th>Что относится</th></tr></thead>
+    <tbody>
+      <tr><td>Деревянная</td><td>ящики, бочки, корзины</td></tr>
+      <tr><td>Картонная</td><td>из прессованного, литого или склеенного картона (древесина, целлюлоза, макулатура)</td></tr>
+      <tr><td>Бумажная</td><td>мешки и пакеты</td></tr>
+      <tr><td>Текстильная</td><td>упаковочные ткани, тканевые мешки</td></tr>
+      <tr><td>Металлическая</td><td>бочки, барабаны, фляги, канистры, баллоны (в т. ч. аэрозольные)</td></tr>
+      <tr><td>Стеклянная</td><td>баллоны, бутылки, банки, флаконы</td></tr>
+      <tr><td>Полимерная</td><td>лёгкая, прочная, с низкой влагопроницаемостью — применяется всё шире</td></tr>
+      <tr><td>Комбинированная</td><td>единая конструкция из разных материалов: картонный корпус с металлическим дном</td></tr>
+    </tbody>
+  </table></div>
+  <p><b>По виду тары:</b> пакет, пачка, коробка, бутылка, банка, туба, ампула, ящик, бочка, барабан, фляга, канистра, мешок. <b>Укупорочные и вспомогательные средства:</b> пробка, кронен-пробка, колпачок, крышка, мюзле, скоба, амортизаторы, вставки, решётки, обвязочные ленты, пломбы.</p>
+  <h3>При выборе оборудования для хранения учитывают</h3>
+  <ul>
+    <li>тип склада и его габариты; ассортимент товаров;</li>
+    <li>габариты и массу грузовых мест;</li>
+    <li>подъёмно-транспортное оборудование; финансовые возможности.</li>
+  </ul>
+  <div class="pg"></div>
+</article>
+
+<article class="sheet">
+  <h2 id="l4s3"><span class="n">3.</span><span class="mk">Виды транспортной тары</span></h2>
+  <p class="tcap">Таблица 1 – Транспортная тара и ГОСТы, названные в лекции</p>
+  <div class="twrap"><table class="wide">
+    <thead><tr><th>Вид</th><th>Разновидности</th><th>Особенности, ГОСТ</th></tr></thead>
+    <tbody>
+      <tr><td class="sys">Ящики</td><td>деревянные, обрешётки, из гофрокартона, из бумаги и комбинированных материалов; полимерные многооборотные</td><td>деревянные — ГОСТ 2991</td></tr>
+      <tr><td class="sys">Тара для сыпучих</td><td>биг-бэг, полипропиленовый мешок, бумажный мешок</td><td>—</td></tr>
+      <tr><td class="sys">Мешки и кули</td><td>бумажные (сшитые и склеенные); полиэтиленовые</td><td>малая масса относительно содержимого, гибкость, удобство заполнения, мало места при хранении, дешевизна; бумажные — ГОСТ 2226-88, полиэтиленовые для химии — ГОСТ 17811-78</td></tr>
+      <tr><td class="sys">Кипы и тюки</td><td>спрессованные упаковки (вата, волокна, сено)</td><td>—</td></tr>
+      <tr><td class="sys">Барабаны</td><td>картонные навивные (4 вида), фанерные, стальные тонкостенные и толстостенные</td><td>ГОСТ 17065-94; ГОСТ 9338-80; ГОСТ 5044-79; ГОСТ 18896-73</td></tr>
+      <tr><td class="sys">Для наливных</td><td>цистерны, бочки, фляги</td><td>фляги многооборотные металлические — ГОСТ 5799-78</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small soft">Номера ГОСТ записаны по слайдам; при ссылке в отчёте проверь, действует ли редакция.</p>
+
+  <h2 id="l4s4"><span class="n">4.</span><span class="mk">Поддоны и средства пакетирования</span></h2>
+  <p><span class="hl p term">Поддон</span> — средство пакетирования с площадкой для укладки груза, с надстройками или без, приспособленное для <span class="key">механизированного перемещения</span>. На нём из мелких единиц формируют укрупнённую грузовую единицу.</p>
+  <p>Груз на поддоне закрепляют: <span class="hl y key">системой укладки</span> (держится собственным весом), <span class="hl y key">стропованием</span> (связка с поддоном), <span class="hl y key">термоусадочной плёнкой</span>.</p>
+  <figure>
+    <svg viewBox="0 0 420 210" role="img" aria-label="Поддоны EUR 1200 на 800 мм и FIN 1200 на 1000 мм в одном масштабе">
+      <g class="rough">
+        <rect class="ln fill-y" x="30" y="40" width="144" height="96" rx="3"/>
+        <rect class="ln fill-b" x="236" y="40" width="144" height="120" rx="3"/>
+        <path class="ln thin" d="M30 64 H174 M30 88 H174 M30 112 H174 M236 64 H380 M236 88 H380 M236 112 H380 M236 136 H380"/>
+      </g>
+      <text class="tx b tx-red" x="102" y="28" text-anchor="middle" font-size="18">EUR (европоддон)</text>
+      <text class="tx b tx-red" x="308" y="28" text-anchor="middle" font-size="18">FIN (финский)</text>
+      <text class="tx" x="102" y="158" text-anchor="middle" font-size="16">1200 × 800 мм</text>
+      <text class="tx" x="308" y="182" text-anchor="middle" font-size="16">1200 × 1000 мм</text>
+    </svg>
+    <figcaption>Рисунок 2 – Деревянные поддоны EUR и FIN в одном масштабе</figcaption>
+  </figure>
+  <ul>
+    <li>Типоразмеры деревянных: <b>EUR</b> 800 × 1200 × 150 мм, <b>FIN</b> 1000 × 1200 × 150 мм (по слайду; стандарт EPAL даёт высоту 144 мм).</li>
+    <li>Пластиковые: 1200 × 800 × 200 и 1200 × 1000 × 200 мм; захват с четырёх сторон погрузчиком, рельефная поверхность и бортики для устойчивости груза.</li>
+    <li>Самый распространённый стандартный размер — <span class="key">1200 × 1000 мм</span>.</li>
+  </ul>
+  <div class="cards">
+    <section class="card"><h4 class="grn">Плюсы пластиковых поддонов</h4><ul><li>служат до 10 лет и дольше</li><li>гигиеничны, легко моются и дезинфицируются</li><li>стойки к агрессивным жидкостям</li><li>прочны на изгиб и удар, износостойки</li><li><b>не</b> гниют, не впитывают влагу, вредные вещества и запахи</li><li>штабелируются, экономят место</li><li>масса не зависит от погоды</li><li>перерабатываются</li></ul></section>
+    <section class="card"><h4>Выбор поддона: аспекты</h4><ul><li><b>материал</b> — дерево; сталь и алюминий — для разборных</li><li><b>стандартизация</b> — стандартные размеры удобны для стеллажей, транспорта, складов</li><li><b>бесподдонные единичные грузы</b> — формируют грузоформирующие машины</li><li><b>объединение пользователей поддонов</b> — экономия на перевозке порожней тары</li></ul></section>
+  </div>
+  <h3>Специализированные поддоны</h3>
+  <ul>
+    <li><span class="term">Флет</span> — поддон со складными стенками: плоский флет, флет с торцевыми бортами, флет с полной надстройкой.</li>
+    <li><span class="term">Тилт</span> — поддон со складными щитами-стенками со всех четырёх сторон.</li>
+    <li><span class="term">Блостер</span> — площадка по стандарту ISO с угловыми фитингами и гнёздами для стоек.</li>
+  </ul>
+  <p><b>Средства пакетирования:</b> пакетирующая кассета, строп, обвязка, пакетирующая связка.</p>
+  <aside class="note-avia">
+    <svg class="ico" aria-hidden="true"><use href="#i-plane"/></svg>
+    <div><span class="hand grn">В авиации</span> роль поддонов и контейнеров играют <b>ULD</b> (unit load devices): авиапаллеты с сеткой (например, PMC, около 3,2 × 2,4 м) и авиаконтейнеры (например, LD3, около 1,5 × 1,5 × 1,6 м). Их форма повторяет контур грузового отсека. Прочность тары внутри ULD рассчитываем в практической и лабораторной работах №4.</div>
+  </aside>
+
+  <h2><span class="mk">Выводы</span></h2>
+  <ol>
+    <li>Упаковка = тара + упаковочные + перевязочные материалы; тара — её основной элемент.</li>
+    <li>Тару классифицируют по 11 признакам; главный — функция в обращении: транспортная, потребительская, тара-оборудование, цеховая.</li>
+    <li>Вид транспортной тары выбирают по свойствам груза: ящики и коробки — для штучных, мешки — для сыпучих, бочки, фляги и цистерны — для жидких.</li>
+    <li>Поддоны и средства пакетирования создают укрупнённые грузовые единицы и ускоряют механизированную перегрузку; в авиации эту роль выполняют ULD.</li>
+  </ol>
+  <h3>Проверь себя</h3>
+  <div class="check">
+    <details><summary>Из каких элементов состоит упаковка?</summary><p>Тара, упаковочные материалы, перевязочные материалы.</p></details>
+    <details><summary>Чем возвратная тара отличается от многооборотной?</summary><p>Возвратная — бывшая в употреблении тара, которую обязательно сдают поставщику для повторного использования; многооборотная изначально рассчитана на многократное использование.</p></details>
+    <details><summary>Что такое тара-оборудование?</summary><p>Изделие для укладки, перевозки, хранения и продажи из него товаров: одновременно тара и торговое оборудование.</p></details>
+    <details><summary>Размеры поддонов EUR и FIN?</summary><p>EUR — 800 × 1200 мм, FIN — 1000 × 1200 мм.</p></details>
+    <details><summary>Как закрепляют груз на поддоне?</summary><p>Системой укладки, стропованием, термоусадочной плёнкой.</p></details>
+    <details><summary>Чем флет отличается от тилта?</summary><p>Флет — поддон со складными стенками (торцевые борта или полная надстройка); тилт — со складными щитами со всех четырёх сторон.</p></details>
+  </div>
+  <h3>Источники</h3>
+  <ol class="src">
+    <li>Лекция 4. Тара и упаковочные материалы : презентация / КАИ им. И. Абдраимова. – Бишкек, 2026. – 50 слайдов.</li>
+    <li>Олещенко Е. М., Горев А. Э. Основы грузоведения : учебник. – Москва : Академия, 2008. – 283 с.</li>
+    <li>Пашков А. К., Полярин Ю. Н. Пакетирование и перевозка тарно-штучных грузов. – Москва : Транспорт, 2000. – 255 с.</li>
+    <li>Air freight containers / Röhlig. – URL: <a href="https://www.rohlig.com/infocenter/air-freight/containers.html" target="_blank" rel="noopener">rohlig.com</a> (дата обращения: 10.11.2026).</li>
+  </ol>
+  <button class="next" type="button" data-go="lec1">← к лекции 1</button>
+  <div class="pg"></div>
+</article>
+</section>
+
+</main>
+
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var views = {}, order = [];
+  document.querySelectorAll('.view').forEach(function(v){ views[v.id] = v; order.push(v.id); });
+  var tabs = document.querySelectorAll('[data-view]');
+  function show(id, scroll){
+    if(!views[id]) id = order[0];
+    order.forEach(function(k){ views[k].hidden = (k !== id); });
+    tabs.forEach(function(t){ if(t.dataset.view === id){ t.setAttribute('aria-current','page'); } else { t.removeAttribute('aria-current'); } });
+    if(scroll){ try{ history.replaceState(null, '', '#' + id); }catch(e){} window.scrollTo(0, 0); }
+    document.dispatchEvent(new CustomEvent('viewchange', {detail: id}));
+  }
+  window.showView = show;
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.dataset.view, true); }); });
+  document.addEventListener('click', function(e){
+    var go = e.target.closest('[data-go]');
+    if(go){ e.preventDefault(); show(go.dataset.go, true); }
+  });
+  var h = (location.hash || '').slice(1).split('-v')[0];
+  show(views[h] ? h : order[0], false);
+
+  var qb = document.getElementById('quiz');
+  if(qb){
+    qb.addEventListener('click', function(){
+      var on = !root.classList.contains('quiz');
+      root.classList.toggle('quiz', on);
+      qb.setAttribute('aria-pressed', String(on));
+      document.querySelectorAll('.key').forEach(function(k){
+        k.classList.remove('shown');
+        if(on){ k.setAttribute('tabindex','0'); k.setAttribute('role','button'); }
+        else { k.removeAttribute('tabindex'); k.removeAttribute('role'); }
+      });
+    });
+  }
+  document.addEventListener('click', function(e){
+    if(!root.classList.contains('quiz')) return;
+    var k = e.target.closest('.key');
+    if(k){ k.classList.toggle('shown'); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(!root.classList.contains('quiz')) return;
+    var k = e.target && e.target.closest ? e.target.closest('.key') : null;
+    if(k && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); k.classList.toggle('shown'); }
+  });
+
+  var KEY = 'gruz-student';
+  var fields = document.querySelectorAll('input.studname');
+  var saved = '';
+  try{ saved = localStorage.getItem(KEY) || ''; }catch(e){}
+  fields.forEach(function(el){
+    el.value = saved;
+    el.addEventListener('input', function(){
+      fields.forEach(function(o){ if(o !== el) o.value = el.value; });
+      try{ localStorage.setItem(KEY, el.value); }catch(e){}
+    });
+  });
+})();
+
+</script>
+
+</body></html>
